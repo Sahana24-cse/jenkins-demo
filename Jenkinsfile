@@ -1,19 +1,24 @@
+
 pipeline {
     agent any
+
+    environment {
+        PYTHON = 'C:\\Users\\sahan\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
+    }
 
     stages {
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                bat 'python --version'
-                bat 'python app.py'
+                bat '"%PYTHON%" --version'
+                bat '"%PYTHON%" app.py'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running test cases...'
-                bat 'python -m unittest test_app.py'
+                bat '"%PYTHON%" -m unittest test_app.py'
             }
         }
     }
